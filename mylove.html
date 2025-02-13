@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffccd5;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            text-align: center;
+            overflow: hidden;
+        }
+        h1 {
+            color: #d6336c;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        #yes {
+            background-color: #ff4d6d;
+            color: white;
+        }
+        #no {
+            background-color: #6c757d;
+            color: white;
+            position: absolute;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: floatUp 2s linear infinite;
+        }
+        .image {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            animation: floatUp 3s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Will you be my Valentine? 💖</h1>
+    <div class="buttons">
+        <button id="yes" onclick="sayYes()">Yes</button>
+        <button id="no" onmouseover="moveNo()">No</button>
+    </div>
+
+    <script>
+        function sayYes() {
+            alert("Yay! I love you! ❤️");
+            setInterval(createHearts, 300);
+            setInterval(createImages, 500);
+        }
+
+        function moveNo() {
+            let noButton = document.getElementById("no");
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            noButton.style.left = x + "px";
+            noButton.style.top = y + "px";
+        }
+
+        function createHearts() {
+            let heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            document.body.appendChild(heart);
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.top = Math.random() * window.innerHeight + "px";
+            setTimeout(() => heart.remove(), 2000);
+        }
+
+        function createImages() {
+            let imageUrls = ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg", "image5.jpg", "image6.jpg", "image7.jpg", "image8.jpg", "image9.jpg", "image10.jpg"];
+            let url = imageUrls[Math.floor(Math.random() * imageUrls.length)];
+            let img = document.createElement("img");
+            img.src = url;
+            img.classList.add("image");
+            document.body.appendChild(img);
+            img.style.left = Math.random() * window.innerWidth + "px";
+            img.style.top = Math.random() * window.innerHeight + "px";
+            setTimeout(() => img.remove(), 3000);
+        }
+    </script>
+</body>
+</html>
